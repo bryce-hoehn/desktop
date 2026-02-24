@@ -218,10 +218,10 @@ Utilità desktop per la sincronizazione dei file.</translation>
         <translation>Impossibile rimuovere la cartella</translation>
     </message>
     <message>
-        <location filename="../src/libsync/common/filesystembase.cpp" line="195"/>
-        <location filename="../src/libsync/common/filesystembase.cpp" line="197"/>
-        <location filename="../src/libsync/common/filesystembase.cpp" line="256"/>
-        <location filename="../src/libsync/common/filesystembase.cpp" line="261"/>
+        <location filename="../src/libsync/common/filesystembase.cpp" line="196"/>
+        <location filename="../src/libsync/common/filesystembase.cpp" line="198"/>
+        <location filename="../src/libsync/common/filesystembase.cpp" line="257"/>
+        <location filename="../src/libsync/common/filesystembase.cpp" line="262"/>
         <source>Can&apos;t rename »%1«, the file is currently in use</source>
         <translation>Impossibile rinominare »%1«, il file è attualmente in uso</translation>
     </message>
@@ -1003,32 +1003,32 @@ L&apos;aggiornamento verrà eseguito in background e sovrascriverà il file AppI
         <translation>Sincronizza attività</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="715"/>
+        <location filename="../src/gui/folder.cpp" line="714"/>
         <source>Switching VFS mode on folder »%1«</source>
         <translation>Commutazione della modalità VFS sulla cartella »%1«</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="1055"/>
+        <location filename="../src/gui/folder.cpp" line="1054"/>
         <source>The folder »%1« was created but was excluded from synchronization previously. Data inside it will not be synchronized.</source>
         <translation>La cartella »%1« è stata creata ma in precedenza era stata esclusa dalla sincronizzazione. I dati al suo interno non verranno sincronizzati.</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="1058"/>
+        <location filename="../src/gui/folder.cpp" line="1057"/>
         <source>The file »%1« was created but was excluded from synchronization previously. It will not be synchronized.</source>
         <translation>Il file »%1« è stato creato ma in precedenza era stato escluso dalla sincronizzazione. Non verrà sincronizzato.</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="1062"/>
+        <location filename="../src/gui/folder.cpp" line="1061"/>
         <source>»%1« is not synchronized</source>
         <translation>»%1« non è sincronizzato</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="851"/>
+        <location filename="../src/gui/folder.cpp" line="850"/>
         <source>Could not read system exclude file</source>
         <translation>Impossibile leggere il file di esclusione del sistema</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="1070"/>
+        <location filename="../src/gui/folder.cpp" line="1069"/>
         <source>Changes in synchronized folders could not be tracked reliably.
 
 This means that the synchronization client might not upload local changes immediately and will instead only scan for local changes and upload them occasionally (every two hours by default).
@@ -2796,18 +2796,13 @@ Note that using any logging command line options will override the settings.</so
 <context>
     <name>OCC::VfsXAttr</name>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="133"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="181"/>
         <source>Unable to claim the sync root for files on demand</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="192"/>
-        <source>Failed to set the extended file attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="373"/>
-        <source>Cannot create a placeholder because a file with the placeholder name already exist</source>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="385"/>
+        <source>Cannot dehydrate a placeholder because the file changed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2934,37 +2929,37 @@ Note that using any logging command line options will override the settings.</so
 <context>
     <name>OCC::XattrVfsPluginFactory</name>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="217"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="233"/>
         <source>Failed to read /proc/self/mountinfo</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="230"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="246"/>
         <source>Failed to unmount the OpenVFS mount %1 Error:%2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="239"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="255"/>
         <source>The filesystem for %1 does not support xattributes.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="244"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="260"/>
         <source>The sync path is already claimed by a different account, please check your setup</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="248"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="264"/>
         <source>The sync path is claimed by a different cloud, please check your setup</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="252"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="269"/>
         <source>OpenVFS executable not found, please install it</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="258"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="275"/>
         <source>Failed to find the OpenVFS config file, please check your installation.</source>
         <translation type="unfinished"/>
     </message>
@@ -3360,12 +3355,12 @@ Note that using any logging command line options will override the settings.</so
 <context>
     <name>VfsPluginManager</name>
     <message>
-        <location filename="../src/libsync/vfs/vfs.cpp" line="239"/>
+        <location filename="../src/libsync/vfs/vfs.cpp" line="240"/>
         <source>ReFS is currently not supported.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libsync/vfs/vfs.cpp" line="247"/>
+        <location filename="../src/libsync/vfs/vfs.cpp" line="248"/>
         <source>The Virtual filesystem %1 is not supported on this platform</source>
         <translation type="unfinished"/>
     </message>

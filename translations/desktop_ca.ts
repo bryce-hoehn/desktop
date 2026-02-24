@@ -219,10 +219,10 @@ Aplicació d&apos;escriptori per sincronitzar fitxers.</translation>
         <translation>No s&apos;ha pogut eliminar la carpeta.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/common/filesystembase.cpp" line="195"/>
-        <location filename="../src/libsync/common/filesystembase.cpp" line="197"/>
-        <location filename="../src/libsync/common/filesystembase.cpp" line="256"/>
-        <location filename="../src/libsync/common/filesystembase.cpp" line="261"/>
+        <location filename="../src/libsync/common/filesystembase.cpp" line="196"/>
+        <location filename="../src/libsync/common/filesystembase.cpp" line="198"/>
+        <location filename="../src/libsync/common/filesystembase.cpp" line="257"/>
+        <location filename="../src/libsync/common/filesystembase.cpp" line="262"/>
         <source>Can&apos;t rename »%1«, the file is currently in use</source>
         <translation>No es pot canviar el nom de »%1«, el fitxer està en ús actualment.</translation>
     </message>
@@ -1001,32 +1001,32 @@ L&apos;actualització es realitzarà en segon pla i substituirà el fitxer AppIm
         <translation>Activitat de sincronització</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="715"/>
+        <location filename="../src/gui/folder.cpp" line="714"/>
         <source>Switching VFS mode on folder »%1«</source>
         <translation>Canviant el mode VFS a la carpeta »%1«.</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="1055"/>
+        <location filename="../src/gui/folder.cpp" line="1054"/>
         <source>The folder »%1« was created but was excluded from synchronization previously. Data inside it will not be synchronized.</source>
         <translation>La carpeta »%1« es va crear, però anteriorment s’excloïa de la sincronització. Les dades que contingui no se sincronitzaran.</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="1058"/>
+        <location filename="../src/gui/folder.cpp" line="1057"/>
         <source>The file »%1« was created but was excluded from synchronization previously. It will not be synchronized.</source>
         <translation>El fitxer »%1« es va crear, però anteriorment s’excloïa de la sincronització. No se sincronitzarà.</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="1062"/>
+        <location filename="../src/gui/folder.cpp" line="1061"/>
         <source>»%1« is not synchronized</source>
         <translation>»%1« no està sincronitzat.</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="851"/>
+        <location filename="../src/gui/folder.cpp" line="850"/>
         <source>Could not read system exclude file</source>
         <translation>No s&apos;ha pogut llegir el fitxer d&apos;exclusió del sistema.</translation>
     </message>
     <message>
-        <location filename="../src/gui/folder.cpp" line="1070"/>
+        <location filename="../src/gui/folder.cpp" line="1069"/>
         <source>Changes in synchronized folders could not be tracked reliably.
 
 This means that the synchronization client might not upload local changes immediately and will instead only scan for local changes and upload them occasionally (every two hours by default).
@@ -2793,19 +2793,14 @@ Tingues en compte que l’ús de qualsevol opció de línia d’ordres per a reg
 <context>
     <name>OCC::VfsXAttr</name>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="133"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="181"/>
         <source>Unable to claim the sync root for files on demand</source>
         <translation>No es pot reclamar l&apos;arrel de sincronització per a fitxers sota demanda.</translation>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="192"/>
-        <source>Failed to set the extended file attribute</source>
-        <translation>No s&apos;ha pogut definir l&apos;atribut de fitxer ampliat</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="373"/>
-        <source>Cannot create a placeholder because a file with the placeholder name already exist</source>
-        <translation>No es pot crear un marcador de posició perquè ja existeix un fitxer amb aquest nom de marcador de posició.</translation>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="385"/>
+        <source>Cannot dehydrate a placeholder because the file changed</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2931,37 +2926,37 @@ Tingues en compte que l’ús de qualsevol opció de línia d’ordres per a reg
 <context>
     <name>OCC::XattrVfsPluginFactory</name>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="217"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="233"/>
         <source>Failed to read /proc/self/mountinfo</source>
         <translation>No s&apos;ha pogut llegir /proc/self/mountinfo</translation>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="230"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="246"/>
         <source>Failed to unmount the OpenVFS mount %1 Error:%2</source>
         <translation>No s&apos;ha pogut desmuntar el muntatge OpenVFS %1 Error:%2</translation>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="239"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="255"/>
         <source>The filesystem for %1 does not support xattributes.</source>
         <translation>El sistema de fitxers per a %1 no admet els xatributs.</translation>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="244"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="260"/>
         <source>The sync path is already claimed by a different account, please check your setup</source>
         <translation>La ruta de sincronització ja està reclamada per un altre compte. Si us plau, comproveu la configuració.</translation>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="248"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="264"/>
         <source>The sync path is claimed by a different cloud, please check your setup</source>
         <translation>La ruta de sincronització la reclama un núvol diferent. Si us plau, comproveu la configuració.</translation>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="252"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="269"/>
         <source>OpenVFS executable not found, please install it</source>
         <translation>No s&apos;ha trobat l&apos;executable d&apos;OpenVFS, instal·leu-lo.</translation>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="258"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="275"/>
         <source>Failed to find the OpenVFS config file, please check your installation.</source>
         <translation>No s&apos;ha pogut trobar el fitxer de configuració d&apos;OpenVFS. Si us plau, comproveu la instal·lació.</translation>
     </message>
@@ -3356,12 +3351,12 @@ Tingues en compte que l’ús de qualsevol opció de línia d’ordres per a reg
 <context>
     <name>VfsPluginManager</name>
     <message>
-        <location filename="../src/libsync/vfs/vfs.cpp" line="239"/>
+        <location filename="../src/libsync/vfs/vfs.cpp" line="240"/>
         <source>ReFS is currently not supported.</source>
         <translation>Actualment no s&apos;admet ReFS.</translation>
     </message>
     <message>
-        <location filename="../src/libsync/vfs/vfs.cpp" line="247"/>
+        <location filename="../src/libsync/vfs/vfs.cpp" line="248"/>
         <source>The Virtual filesystem %1 is not supported on this platform</source>
         <translation>El sistema de fitxers virtual %1 no és compatible amb aquesta plataforma</translation>
     </message>
