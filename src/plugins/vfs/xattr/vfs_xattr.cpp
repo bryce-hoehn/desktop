@@ -31,9 +31,14 @@ Q_LOGGING_CATEGORY(lcVfsXAttr, "sync.vfs.xattr", QtInfoMsg)
 
 
 namespace {
-QString openVFSExePath()
+OCC::FileSystem::Path openVFSExePath()
 {
-    return QStringLiteral(OPENVFS_EXE);
+    auto openVFS = OCC::FileSystem::Path(std::filesystem::path(OPENVFS_EXE));
+    auto binary = OCC::FileSystem::Path(qApp->applicationDirPath()) / openVFS.get().filename();
+    if (binary.exists()) {
+        return binary;
+    }
+    return openVFS;
 }
 
 
@@ -42,9 +47,19 @@ QByteArray xattrOwnerString(const QUuid &accountUuid)
     return OCC::Theme::instance()->appName().toUtf8() + ":" + accountUuid.toByteArray(QUuid::WithoutBraces);
 }
 
-QString openVFSConfigFilePath()
+OCC::FileSystem::Path openVFSConfigFilePath()
 {
-    return QStandardPaths::locate(QStandardPaths::ConfigLocation, u"openvfs/config.json"_s);
+    auto systemPath = OCC::FileSystem::Path(QStandardPaths::locate(QStandardPaths::ConfigLocation, u"openvfs/config.json"_s));
+    if (!systemPath.get().empty()) {
+        return systemPath;
+    }
+    if (OCC::Utility::runningInAppImage()) {
+        auto appimagePath = OCC::FileSystem::Path(qApp->applicationDirPath()) / "../etc/xdg/openvfs/config.json";
+        if (appimagePath.exists()) {
+            return appimagePath;
+        }
+    }
+    return {};
 }
 
 OpenVfsAttributes::PlaceHolderAttributes placeHolderAttributes(const std::filesystem::path &path)
@@ -195,7 +210,7 @@ void VfsXAttr::startImpl(const VfsSetupParams &params)
         Q_EMIT started();
     });
     connect(vfsProcess, &QProcess::errorOccurred, this, [logPrefix, vfsProcess] { qCWarning(lcVfsXAttr) << logPrefix() << vfsProcess->errorString(); });
-    vfsProcess->start(openVFSExePath(), {u"-d"_s, u"-i"_s, openVFSConfigFilePath(), params.root().toString()}, QIODevice::ReadOnly);
+    vfsProcess->start(openVFSExePath().toString(), {u"-d"_s, u"-i"_s, openVFSConfigFilePath().toString(), params.root().toString()}, QIODevice::ReadOnly);
 }
 
 void VfsXAttr::stop()
@@ -264,13 +279,13 @@ Result<void, QString> XattrVfsPluginFactory::prepare(const QString &path, const 
             return tr("The sync path is claimed by a different cloud, please check your setup");
         }
     }
-    if (!QFileInfo::exists(openVFSExePath())) {
-        qCDebug(lcVfsXAttr) << "OpenVFS executable not found at" << openVFSExePath();
+    if (!openVFSExePath().exists()) {
+        qCDebug(lcVfsXAttr) << "OpenVFS executable not found at" << openVFSExePath().toString();
         return tr("OpenVFS executable not found, please install it");
     }
     const auto vfsConfig = openVFSConfigFilePath();
-    if (!vfsConfig.isEmpty()) {
-        qCDebug(lcVfsXAttr) << "Using config file" << vfsConfig;
+    if (!vfsConfig.get().empty()) {
+        qCDebug(lcVfsXAttr) << "Using config file" << vfsConfig.toString();
     } else {
         return tr("Failed to find the OpenVFS config file, please check your installation.");
     }
