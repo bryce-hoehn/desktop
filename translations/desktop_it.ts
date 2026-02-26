@@ -2796,12 +2796,12 @@ Note that using any logging command line options will override the settings.</so
 <context>
     <name>OCC::VfsXAttr</name>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="181"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="196"/>
         <source>Unable to claim the sync root for files on demand</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="385"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="400"/>
         <source>Cannot dehydrate a placeholder because the file changed</source>
         <translation type="unfinished"/>
     </message>
@@ -2929,37 +2929,37 @@ Note that using any logging command line options will override the settings.</so
 <context>
     <name>OCC::XattrVfsPluginFactory</name>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="233"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="248"/>
         <source>Failed to read /proc/self/mountinfo</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="246"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="261"/>
         <source>Failed to unmount the OpenVFS mount %1 Error:%2</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="255"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="270"/>
         <source>The filesystem for %1 does not support xattributes.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="260"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="275"/>
         <source>The sync path is already claimed by a different account, please check your setup</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="264"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="279"/>
         <source>The sync path is claimed by a different cloud, please check your setup</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="269"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="284"/>
         <source>OpenVFS executable not found, please install it</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="275"/>
+        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="290"/>
         <source>Failed to find the OpenVFS config file, please check your installation.</source>
         <translation type="unfinished"/>
     </message>
