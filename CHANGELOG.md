@@ -22,6 +22,7 @@
 
 ### 📦️ Dependencies
 
+- Bump actions/upload-artifact from 6 to 7 [[#831](https://github.com/opencloud-eu/desktop/pull/831)]
 - Bump actions/cache from 4 to 5 [[#758](https://github.com/opencloud-eu/desktop/pull/758)]
 - Bump actions/upload-artifact from 5 to 6 [[#757](https://github.com/opencloud-eu/desktop/pull/757)]
 
