@@ -21,7 +21,7 @@ namespace FileSystem {
          * For path segments use Path::relative.
          * @param path
          */
-        explicit Path(QAnyStringView path);
+        explicit Path(QStringView path);
 
         Path(const std::filesystem::path &path);
 
