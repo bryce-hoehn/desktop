@@ -5,7 +5,7 @@
 
 #include "libsync/common/filesystembase.h"
 
-OCC::FileSystem::Path::Path(QAnyStringView path)
+OCC::FileSystem::Path::Path(QStringView path)
     : _path(toFilesystemPath(path.toString()))
 {
 }
