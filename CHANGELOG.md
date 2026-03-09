@@ -1,6 +1,6 @@
 # Changelog
 
-## [4.0.0](https://github.com/opencloud-eu/desktop/releases/tag/v4.0.0) - 2026-03-07
+## [4.0.0](https://github.com/opencloud-eu/desktop/releases/tag/v4.0.0) - 2026-03-09
 
 ### ❤️ Thanks to all contributors! ❤️
 
@@ -10,15 +10,16 @@
 
 - Update Qt to 6.10.2, this removes support for MacOS 12 [[#762](https://github.com/opencloud-eu/desktop/pull/762)]
 
+### 📈 Enhancement
+
+- Refactor plugin loading [[#839](https://github.com/opencloud-eu/desktop/pull/839)]
+- Update SVG logo with new design [[#711](https://github.com/opencloud-eu/desktop/pull/711)]
+
 ### 🐛 Bug Fixes
 
 - FetchServerSettingsJob always emit finished [[#824](https://github.com/opencloud-eu/desktop/pull/824)]
 - Fix path passed to pinstate [[#810](https://github.com/opencloud-eu/desktop/pull/810)]
 - Fix canonicalPath for drives (c:) [[#701](https://github.com/opencloud-eu/desktop/pull/701)]
-
-### 📈 Enhancement
-
-- Update SVG logo with new design [[#711](https://github.com/opencloud-eu/desktop/pull/711)]
 
 ### 📦️ Dependencies
 
