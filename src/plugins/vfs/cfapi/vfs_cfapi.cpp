@@ -134,7 +134,7 @@ void VfsCfApi::startImpl(const VfsSetupParams &params)
     });
 }
 
-Result<void, QString> CfApiVfsPluginFactory::prepare(const QString &path, const QUuid &accountUuid) const
+Result<void, QString> CfApiVfsPluginFactory::prepare(const QString &path, const QUuid &) const
 {
     if (QDir(path).isRoot()) {
         return tr("The Virtual filesystem feature does not support a drive as sync root");
@@ -185,7 +185,10 @@ Result<Vfs::ConvertToPlaceholderResult, QString> VfsCfApi::updateMetadata(const 
     const auto replacesPath = QDir::toNativeSeparators(replacesFile);
 
     if (syncItem._type == ItemTypeVirtualFileDehydration) {
-        return cfapi::dehydratePlaceholder(localPath, syncItem._size, syncItem._fileId);
+        auto result = cfapi::dehydratePlaceholder(localPath, syncItem._fileId);
+        // if the dehydration call succeeded, check whether the placeholder is dehydrated
+        Q_ASSERT(!result || isDehydratedPlaceholder(filePath));
+        return result;
     } else {
         if (cfapi::findPlaceholderInfo<CF_PLACEHOLDER_BASIC_INFO>(localPath)) {
             return cfapi::updatePlaceholderInfo(localPath, syncItem._modtime, syncItem._size, syncItem._fileId, replacesPath);
@@ -213,20 +216,20 @@ bool VfsCfApi::needsMetadataUpdate(const SyncFileItem &item)
 
 bool VfsCfApi::isDehydratedPlaceholder(const QString &filePath)
 {
-    const auto path = QDir::toNativeSeparators(filePath);
-    return cfapi::isSparseFile(path);
+    return cfapi::isDehydratedPlaceholder(FileSystem::Path(filePath));
 }
 
-LocalInfo VfsCfApi::statTypeVirtualFile(const std::filesystem::directory_entry &path, ItemType type)
+LocalInfo VfsCfApi::statTypeVirtualFile(const std::filesystem::directory_entry &entry, ItemType type)
 {
     // only get placeholder info if it's a file
     if (type == ItemTypeFile) {
-        if (auto placeholderInfo = cfapi::findPlaceholderInfo<CF_PLACEHOLDER_BASIC_INFO>(FileSystem::fromFilesystemPath(path))) {
+        const auto path = FileSystem::Path(entry);
+        if (auto placeholderInfo = cfapi::findPlaceholderInfo<CF_PLACEHOLDER_BASIC_INFO>(path.toString())) {
             Q_ASSERT(placeholderInfo.handle());
             FILE_ATTRIBUTE_TAG_INFO attributeInfo = {};
             if (!GetFileInformationByHandleEx(placeholderInfo.handle(), FileAttributeTagInfo, &attributeInfo, sizeof(attributeInfo))) {
                 const auto error = GetLastError();
-                qCCritical(lcCfApi) << u"GetFileInformationByHandle failed on" << path.path() << OCC::Utility::formatWinError(error);
+                qCCritical(lcCfApi) << u"GetFileInformationByHandle failed on" << path << OCC::Utility::formatWinError(error);
                 return {};
             }
             const CF_PLACEHOLDER_STATE placeholderState = CfGetPlaceholderStateFromAttributeTag(attributeInfo.FileAttributes, attributeInfo.ReparseTag);
@@ -250,7 +253,7 @@ LocalInfo VfsCfApi::statTypeVirtualFile(const std::filesystem::directory_entry &
             }
         }
     }
-    return LocalInfo(path, type);
+    return LocalInfo(entry, type);
 }
 
 bool VfsCfApi::setPinState(const QString &folderPath, PinState state)

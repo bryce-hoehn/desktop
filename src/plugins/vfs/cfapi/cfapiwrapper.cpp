@@ -476,13 +476,24 @@ OCC::Result<void, QString> OCC::CfApiWrapper::disconnectSyncRoot(CF_CONNECTION_K
         return {};
     }
 }
-
-
-bool OCC::CfApiWrapper::isSparseFile(const QString &path)
+bool OCC::CfApiWrapper::isDehydratedPlaceholder(const FileSystem::Path &path)
 {
-    const auto p = path.toStdWString();
-    const auto attributes = GetFileAttributes(p.data());
-    return (attributes & FILE_ATTRIBUTE_SPARSE_FILE) != 0;
+    const auto handle = OCC::Utility::Handle::createHandle(path);
+    if (!handle) {
+        qCWarning(lcCfApiWrapper) << u"Failed to get file handle" << path << handle.errorMessage();
+        return false;
+    }
+    FILE_ATTRIBUTE_TAG_INFO targInfo = {};
+    if (!GetFileInformationByHandleEx(handle, FileAttributeTagInfo, &targInfo, sizeof(targInfo))) {
+        const auto error = GetLastError();
+        qCWarning(lcCfApiWrapper) << u"Failed to get file attribute tag info for" << path << OCC::Utility::formatWinError(error);
+        return false;
+    }
+    const CF_PLACEHOLDER_STATE state = CfGetPlaceholderStateFromAttributeTag(targInfo.FileAttributes, targInfo.ReparseTag);
+    if (state == CF_PLACEHOLDER_STATE_NO_STATES) {
+        return false;
+    }
+    return state & CF_PLACEHOLDER_STATE_PARTIAL;
 }
 
 template <>
@@ -575,17 +586,12 @@ OCC::Result<OCC::Vfs::ConvertToPlaceholderResult, QString> OCC::CfApiWrapper::up
     return updatePlaceholderState(path, modtime, size, fileId, replacesPath);
 }
 
-OCC::Result<OCC::Vfs::ConvertToPlaceholderResult, QString> OCC::CfApiWrapper::dehydratePlaceholder(const QString &path, qint64 size, const QByteArray &fileId)
+OCC::Result<OCC::Vfs::ConvertToPlaceholderResult, QString> OCC::CfApiWrapper::dehydratePlaceholder(const QString &path, const QByteArray &fileId)
 {
     const auto info = findPlaceholderInfo<CF_PLACEHOLDER_BASIC_INFO>(path);
     if (info) {
-        setPinState(path, OCC::PinState::OnlineOnly, OCC::CfApiWrapper::NoRecurse);
-
-        CF_FILE_RANGE dehydrationRange = {};
-        dehydrationRange.Length.QuadPart = size;
-
         const qint64 result = CfUpdatePlaceholder(Utility::Handle::createHandle(OCC::FileSystem::toFilesystemPath(path)), nullptr, fileId.data(),
-            static_cast<DWORD>(fileId.size()), &dehydrationRange, 1, CF_UPDATE_FLAG_MARK_IN_SYNC | CF_UPDATE_FLAG_DEHYDRATE, nullptr, nullptr);
+            static_cast<DWORD>(fileId.size()), nullptr, 0, CF_UPDATE_FLAG_MARK_IN_SYNC | CF_UPDATE_FLAG_DEHYDRATE, nullptr, nullptr);
         if (result != S_OK) {
             const auto errorMessage = createErrorMessageForPlaceholderUpdateAndCreate(path, u"Couldn't update placeholder info"_s);
             qCWarning(lcCfApiWrapper) << errorMessage << path << u":" << OCC::Utility::formatWinError(result);
@@ -600,8 +606,8 @@ OCC::Result<OCC::Vfs::ConvertToPlaceholderResult, QString> OCC::CfApiWrapper::de
             qCWarning(lcCfApiWrapper) << errorMessage << path << u":" << OCC::Utility::formatWinError(result);
             return errorMessage;
         }
+        setPinState(path, OCC::PinState::OnlineOnly, OCC::CfApiWrapper::NoRecurse);
     }
-
     return OCC::Vfs::ConvertToPlaceholderResult::Ok;
 }
 
