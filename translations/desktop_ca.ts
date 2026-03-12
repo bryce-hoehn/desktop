@@ -1767,6 +1767,57 @@ Tingues en compte que l’ús de qualsevol opció de línia d’ordres per a reg
     </message>
 </context>
 <context>
+    <name>OCC::OpenVFS</name>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="198"/>
+        <source>Unable to claim the sync root for files on demand, the folder is already claimed by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="201"/>
+        <source>Unable to retrieve registration info. Error: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="426"/>
+        <source>Cannot dehydrate a placeholder because the file changed</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>OCC::OpenVfsPluginFactory</name>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="278"/>
+        <source>Failed to read /proc/self/mountinfo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="291"/>
+        <source>Failed to unmount the OpenVFS mount %1 Error:%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="300"/>
+        <source>The filesystem for %1 does not support xattributes.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="303"/>
+        <source>The sync path is already claimed by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="307"/>
+        <source>OpenVFS executable not found, please install it</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="313"/>
+        <source>Failed to find the OpenVFS config file, please check your installation.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>OCC::OwncloudPropagator</name>
     <message>
         <location filename="../src/libsync/owncloudpropagator.cpp" line="733"/>
@@ -2708,19 +2759,6 @@ Tingues en compte que l’ús de qualsevol opció de línia d’ordres per a reg
     </message>
 </context>
 <context>
-    <name>OCC::VfsXAttr</name>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="196"/>
-        <source>Unable to claim the sync root for files on demand</source>
-        <translation>No es pot reclamar l&apos;arrel de sincronització per a fitxers sota demanda.</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="424"/>
-        <source>Cannot dehydrate a placeholder because the file changed</source>
-        <translation>No s’ha pogut alliberar espai del fitxer perquè s’ha modificat durant el procés.</translation>
-    </message>
-</context>
-<context>
     <name>OCC::WindowsUpdater</name>
     <message>
         <location filename="../src/gui/updater/ocupdater.cpp" line="422"/>
@@ -2838,44 +2876,6 @@ Tingues en compte que l’ús de qualsevol opció de línia d’ordres per a reg
         <location filename="../src/gui/newwizard/setupwizardwidget.cpp" line="111"/>
         <source>Next</source>
         <translation>Següent</translation>
-    </message>
-</context>
-<context>
-    <name>OCC::XattrVfsPluginFactory</name>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="270"/>
-        <source>Failed to read /proc/self/mountinfo</source>
-        <translation>No s&apos;ha pogut llegir /proc/self/mountinfo</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="283"/>
-        <source>Failed to unmount the OpenVFS mount %1 Error:%2</source>
-        <translation>No s&apos;ha pogut desmuntar el muntatge OpenVFS %1 Error:%2</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="292"/>
-        <source>The filesystem for %1 does not support xattributes.</source>
-        <translation>El sistema de fitxers per a %1 no admet els xatributs.</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="297"/>
-        <source>The sync path is already claimed by a different account, please check your setup</source>
-        <translation>La ruta de sincronització ja està reclamada per un altre compte. Si us plau, comproveu la configuració.</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="301"/>
-        <source>The sync path is claimed by a different cloud, please check your setup</source>
-        <translation>La ruta de sincronització la reclama un núvol diferent. Si us plau, comproveu la configuració.</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="306"/>
-        <source>OpenVFS executable not found, please install it</source>
-        <translation>No s&apos;ha trobat l&apos;executable d&apos;OpenVFS, instal·leu-lo.</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="312"/>
-        <source>Failed to find the OpenVFS config file, please check your installation.</source>
-        <translation>No s&apos;ha pogut trobar el fitxer de configuració d&apos;OpenVFS. Si us plau, comproveu la instal·lació.</translation>
     </message>
 </context>
 <context>

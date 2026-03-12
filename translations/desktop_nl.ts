@@ -1766,6 +1766,57 @@ Note that using any logging command line options will override the settings.</so
     </message>
 </context>
 <context>
+    <name>OCC::OpenVFS</name>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="198"/>
+        <source>Unable to claim the sync root for files on demand, the folder is already claimed by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="201"/>
+        <source>Unable to retrieve registration info. Error: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="426"/>
+        <source>Cannot dehydrate a placeholder because the file changed</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>OCC::OpenVfsPluginFactory</name>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="278"/>
+        <source>Failed to read /proc/self/mountinfo</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="291"/>
+        <source>Failed to unmount the OpenVFS mount %1 Error:%2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="300"/>
+        <source>The filesystem for %1 does not support xattributes.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="303"/>
+        <source>The sync path is already claimed by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="307"/>
+        <source>OpenVFS executable not found, please install it</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="313"/>
+        <source>Failed to find the OpenVFS config file, please check your installation.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>OCC::OwncloudPropagator</name>
     <message>
         <location filename="../src/libsync/owncloudpropagator.cpp" line="733"/>
@@ -2707,19 +2758,6 @@ Note that using any logging command line options will override the settings.</so
     </message>
 </context>
 <context>
-    <name>OCC::VfsXAttr</name>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="196"/>
-        <source>Unable to claim the sync root for files on demand</source>
-        <translation>Geen synchronisatierechten voor bestanden op aanvraag</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="424"/>
-        <source>Cannot dehydrate a placeholder because the file changed</source>
-        <translation>Kan een tijdelijke aanduiding niet uitdrogen omdat het bestand is gewijzigd</translation>
-    </message>
-</context>
-<context>
     <name>OCC::WindowsUpdater</name>
     <message>
         <location filename="../src/gui/updater/ocupdater.cpp" line="422"/>
@@ -2837,44 +2875,6 @@ Note that using any logging command line options will override the settings.</so
         <location filename="../src/gui/newwizard/setupwizardwidget.cpp" line="111"/>
         <source>Next</source>
         <translation>Volgende</translation>
-    </message>
-</context>
-<context>
-    <name>OCC::XattrVfsPluginFactory</name>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="270"/>
-        <source>Failed to read /proc/self/mountinfo</source>
-        <translation>Lezen /proc/self/mountinfo is mislukt</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="283"/>
-        <source>Failed to unmount the OpenVFS mount %1 Error:%2</source>
-        <translation>Het verwijderen van de OpenVFS-aankoppeling %1 is mislukt. Fout: %2</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="292"/>
-        <source>The filesystem for %1 does not support xattributes.</source>
-        <translation>Het bestandssysteem voor %1 ondersteunt geen xattributen.</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="297"/>
-        <source>The sync path is already claimed by a different account, please check your setup</source>
-        <translation>Het synchronisatiepad is al in gebruik door een ander account, controleer uw instellingen</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="301"/>
-        <source>The sync path is claimed by a different cloud, please check your setup</source>
-        <translation>Het synchronisatiepad wordt geclaimd door een andere cloud, controleer uw instellingen</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="306"/>
-        <source>OpenVFS executable not found, please install it</source>
-        <translation>OpenVFS-uitvoerbaar bestand niet gevonden, installeer het</translation>
-    </message>
-    <message>
-        <location filename="../src/plugins/vfs/xattr/vfs_xattr.cpp" line="312"/>
-        <source>Failed to find the OpenVFS config file, please check your installation.</source>
-        <translation>Kon het OpenVFS-configuratiebestand niet vinden, controleer uw installatie.</translation>
     </message>
 </context>
 <context>
