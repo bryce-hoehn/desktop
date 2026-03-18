@@ -1,0 +1,27 @@
+variables:
+
+#skip_clone: true
+
+labels:
+  platform: "windows/amd64"
+  backend: "local"
+  vmbackend: "win"
+  pipeline_number: "${CI_PIPELINE_NUMBER}"
+
+when:
+  - branch:
+      - test_vm_backend
+    event:
+      - push
+
+# workspace:
+#   base: /woodpecker/
+#   path: desktop
+
+steps:
+  - name: echo
+    image: cmd
+    commands:
+      - pwd
+      - dir
+
