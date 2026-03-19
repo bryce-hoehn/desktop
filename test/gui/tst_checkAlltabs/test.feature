@@ -25,7 +25,6 @@ Feature: Visually check all tabs
             | Edit ignored files |
             | Log settings       |
         And the settings tab should have the following options in the network section:
-            | Proxy Settings     |
             | Download Bandwidth |
             | Upload Bandwidth   |
         When the user opens the about dialog

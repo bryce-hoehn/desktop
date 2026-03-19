@@ -47,7 +47,6 @@ class Settings:
         "Ask for confirmation before synchronizing external storages": "newExternalStorage",
     }
     NETWORK_OPTION_MAP = {
-        "Proxy Settings": "proxyGroupBox",
         "Download Bandwidth": "downloadBox",
         "Upload Bandwidth": "uploadBox",
     }
