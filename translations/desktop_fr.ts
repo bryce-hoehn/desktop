@@ -262,7 +262,7 @@ Utilitaire de bureau pour la synchronisation de fichiers.</translation>
     <message>
         <location filename="../src/gui/qml/FolderDelegate.qml" line="99"/>
         <source>Account options Menu</source>
-        <translation>Options du compte Menu</translation>
+        <translation>Menu des options de compte</translation>
     </message>
     <message>
         <location filename="../src/gui/qml/FolderDelegate.qml" line="332"/>
@@ -414,17 +414,17 @@ Utilitaire de bureau pour la synchronisation de fichiers.</translation>
     <message>
         <location filename="../src/gui/folderwizard/folderwizardsourcepage.ui" line="32"/>
         <source>Enter the path to the Spaces root folder. This folder will contain all your synchronized Spaces.</source>
-        <translation>Saisissez le chemin d&apos;accès au dossier racine de Spaces. Ce dossier contiendra tous les espaces synchronisés.</translation>
+        <translation>Saisissez le chemin d&apos;accès au dossier racine des Espaces. Ce dossier contiendra tous les Espaces synchronisés.</translation>
     </message>
     <message>
         <location filename="../src/gui/folderwizard/folderwizardsourcepage.ui" line="39"/>
         <source>Click to select the Spaces root folder.</source>
-        <translation>Cliquez pour sélectionner le dossier racine des espaces.</translation>
+        <translation>Cliquez pour sélectionner le dossier racine des Espaces.</translation>
     </message>
     <message>
         <location filename="../src/gui/folderwizard/folderwizardsourcepage.ui" line="42"/>
         <source>&amp;Choose...</source>
-        <translation>&amp;Choose...</translation>
+        <translation>&amp;Choisir...</translation>
     </message>
 </context>
 <context>
@@ -511,12 +511,12 @@ Utilitaire de bureau pour la synchronisation de fichiers.</translation>
     <message>
         <location filename="../src/gui/aboutdialog.ui" line="108"/>
         <source>&amp;Update Channel</source>
-        <translation>&amp;Update Channel</translation>
+        <translation>&amp;Canal de mise à jour</translation>
     </message>
     <message>
         <location filename="../src/gui/aboutdialog.ui" line="137"/>
         <source>&amp;Restart &amp;&amp; Update</source>
-        <translation>&amp;Restart &amp;&amp; Update</translation>
+        <translation>&amp;Redémarrer &amp;&amp; Mettre à jour</translation>
     </message>
     <message>
         <location filename="../src/gui/aboutdialog.ui" line="148"/>
@@ -536,7 +536,7 @@ Utilitaire de bureau pour la synchronisation de fichiers.</translation>
     <message>
         <location filename="../src/gui/aboutdialog.cpp" line="159"/>
         <source>&lt;html&gt;The update channel determines which client updates will be offered for installation.&lt;ul&gt;&lt;li&gt;&quot;stable&quot; contains only upgrades that are considered reliable&lt;/li&gt;%1&lt;/ul&gt;&lt;br&gt;⚠️Downgrades are not supported. If you switch to a stable channel this change will only be applied with the next major release.&lt;/html&gt;</source>
-        <translation>&lt;html&gt;Le canal de mise à jour détermine les mises à jour du client qui seront proposées à l&apos;installation.&lt;ul&gt;&lt;li&gt;« stable » ne contient que des mises à jour considérées comme fiables&lt;/li&gt;%1&lt;/ul&gt;&lt;br&gt;⚠️Downgrades ne sont pas prises en charge. Si vous passez à un canal stable, ce changement ne sera appliqué qu&apos;avec la prochaine version majeure.&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;Le canal de mise à jour détermine les mises à jour du client qui seront proposées à l&apos;installation.&lt;ul&gt;&lt;li&gt;« stable » ne contient que des mises à jour considérées comme fiables&lt;/li&gt;%1&lt;/ul&gt;&lt;br&gt;⚠️ Les retours en arrière ne sont pas pris en charge. Si vous passez à un canal stable, ce changement ne sera appliqué qu&apos;avec la prochaine version majeure.&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/gui/aboutdialog.cpp" line="165"/>
@@ -797,12 +797,12 @@ La mise à jour sera effectuée en arrière-plan et écrasera le fichier AppImag
     <message>
         <location filename="../src/plugins/vfs/cfapi/vfs_cfapi.cpp" line="144"/>
         <source>The Virtual filesystem feature requires a NTFS file system, %1 is using %2</source>
-        <translation type="unfinished"/>
+        <translation>La fonctionnalité « système de fichiers virtuel » requiert un système de fichiers NTFS, %1 utilise %2</translation>
     </message>
     <message>
         <location filename="../src/plugins/vfs/cfapi/vfs_cfapi.cpp" line="148"/>
         <source>The Virtual filesystem feature is not supported on network drives</source>
-        <translation type="unfinished"/>
+        <translation>La fonctionnalité « système de fichiers virtuel » n&apos;est pas prise en charge sur les disques en réseau</translation>
     </message>
 </context>
 <context>
@@ -1788,7 +1788,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="278"/>
         <source>Failed to read /proc/self/mountinfo</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de lire /proc/self/mountinfo</translation>
     </message>
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="291"/>
@@ -1798,7 +1798,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="300"/>
         <source>The filesystem for %1 does not support xattributes.</source>
-        <translation type="unfinished"/>
+        <translation>Le système de fichiers pour %1 ne prend pas en charge les xattributes</translation>
     </message>
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="303"/>
@@ -1808,12 +1808,12 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="307"/>
         <source>OpenVFS executable not found, please install it</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;exécutable OpenVFS est introuvable, merci de l&apos;installer</translation>
     </message>
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="313"/>
         <source>Failed to find the OpenVFS config file, please check your installation.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de trouver le fichier de configuration d&apos;OpenVFS, merci de vérifier l&apos;installation.</translation>
     </message>
 </context>
 <context>
@@ -3269,12 +3269,12 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/libsync/vfs/vfs.cpp" line="247"/>
         <source>ReFS is currently not supported.</source>
-        <translation type="unfinished"/>
+        <translation>ReFS n&apos;est pas pris en charge pour le moment.</translation>
     </message>
     <message>
         <location filename="../src/libsync/vfs/vfs.cpp" line="255"/>
         <source>The Virtual filesystem %1 is not supported on this platform</source>
-        <translation type="unfinished"/>
+        <translation>Le système de fichier virtuel %1 n&apos;est pas pris en charge sur cette plateforme</translation>
     </message>
 </context>
 <context>
