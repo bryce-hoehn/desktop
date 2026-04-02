@@ -15,25 +15,31 @@ variables:
 matrix:
   include:
     # - platform: linux/amd64
+    #   backend: "docker"
     #   clone_image: woodpeckerci/plugin-git
     #   build_image: ghcr.io/opencloud-eu/ci-docker-desktop/appimage:latest
     #   target: linux-gcc-x86_64
     #   CACHE_HOST: *CACHE_HOST
     #   bucket: *CACHE_BUCKET
     - platform: windows/amd64
-      clone_image: opencloudeu/woodpecker-windows-git-plugin:v2
-      build_image: opencloudeu/woodpecker-windows-desktop-build-tools:v2.2
+      backend: "local"
+      vmbackend: "win"
+      # clone_image: opencloudeu/woodpecker-windows-git-plugin:v2
+      # build_image: opencloudeu/woodpecker-windows-desktop-build-tools:v2.2
+      build_image: pwsh
       target: windows-cl-msvc2022-x86_64
       CACHE_HOST: *CACHE_HOST
       bucket: *CACHE_BUCKET
 
 labels:
   platform: ${platform}
-  backend: docker
+  backend: ${backend}
+  vmbackend: ${vmbackend}
+  pipeline_number: "${CI_PIPELINE_NUMBER}"
 
-clone:
-  - name: clone
-    image: ${clone_image}
+# clone:
+#   - name: clone
+#     image: ${clone_image}
 
 steps:
   - name: build
@@ -59,34 +65,34 @@ steps:
     commands:
       - pwsh .woodpecker_files/multiplatform-build/package.ps1
 
-  - name: upload artifacts
-    image: opencloudeu/s3cmd:v1
-    depends_on: package
-    when:
-      - status:
-          - success
-          - failure
-    environment:
-      AWS_ACCESS_KEY_ID:
-        from_secret: cache_s3_access_key
-      AWS_SECRET_ACCESS_KEY:
-        from_secret: cache_s3_secret_key
-    commands:
-      # no linebreaks for this command
-      # backticks fail in bash , backslashes fail in powershell
-      # yamllint disable-line rule:line-length
-      - s3cmd --host=${CACHE_HOST} --host-bucket=${CACHE_HOST} --no-check-certificate put --recursive binaries s3://${bucket}/${CI_REPO_NAME}/pipeline_${CI_PIPELINE_NUMBER}/${target}/
+  # - name: upload artifacts
+  #   image: opencloudeu/s3cmd:v1
+  #   depends_on: package
+  #   when:
+  #     - status:
+  #         - success
+  #         - failure
+  #   environment:
+  #     AWS_ACCESS_KEY_ID:
+  #       from_secret: cache_s3_access_key
+  #     AWS_SECRET_ACCESS_KEY:
+  #       from_secret: cache_s3_secret_key
+  #   commands:
+  #     # no linebreaks for this command
+  #     # backticks fail in bash , backslashes fail in powershell
+  #     # yamllint disable-line rule:line-length
+  #     - s3cmd --host=${CACHE_HOST} --host-bucket=${CACHE_HOST} --no-check-certificate put --recursive binaries s3://${bucket}/${CI_REPO_NAME}/pipeline_${CI_PIPELINE_NUMBER}/${target}/
 
-  - name: artifact download links
-    image: ${build_image}
-    depends_on: upload artifacts
-    when:
-      - status:
-          - success
-          - failure
-    environment:
-      CACHE_HOST: *CACHE_HOST
-      TARGET: ${target}
-      BUCKET: *CACHE_BUCKET
-    commands:
-      - pwsh .woodpecker_files/multiplatform-build/print_links.ps1
+  # - name: artifact download links
+  #   image: ${build_image}
+  #   depends_on: upload artifacts
+  #   when:
+  #     - status:
+  #         - success
+  #         - failure
+  #   environment:
+  #     CACHE_HOST: *CACHE_HOST
+  #     TARGET: ${target}
+  #     BUCKET: *CACHE_BUCKET
+  #   commands:
+  #     - pwsh .woodpecker_files/multiplatform-build/print_links.ps1
