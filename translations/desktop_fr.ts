@@ -1770,17 +1770,17 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="198"/>
         <source>Unable to claim the sync root for files on demand, the folder is already claimed by %1</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de revendiquer la racine de synchronisation pour les fichiers à la demande, le dossier est déjà revendiqué par %1</translation>
     </message>
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="201"/>
         <source>Unable to retrieve registration info. Error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de récupérer les informations d&apos;enregistrement. Erreur : %1</translation>
     </message>
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="426"/>
         <source>Cannot dehydrate a placeholder because the file changed</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de déshydrater un espace réservé car le fichier a été modifié</translation>
     </message>
 </context>
 <context>
@@ -1793,7 +1793,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="291"/>
         <source>Failed to unmount the OpenVFS mount %1 Error:%2</source>
-        <translation type="unfinished"/>
+        <translation>Échec du démontage du montage OpenVFS %1 Erreur : %2</translation>
     </message>
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="300"/>
@@ -1803,7 +1803,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="303"/>
         <source>The sync path is already claimed by %1</source>
-        <translation type="unfinished"/>
+        <translation>Le chemin de synchronisation est déjà revendiqué par %1</translation>
     </message>
     <message>
         <location filename="../src/plugins/vfs/openvfs/vfs_openvfs.cpp" line="307"/>
