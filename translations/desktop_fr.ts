@@ -1919,7 +1919,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/libsync/discovery.cpp" line="1067"/>
         <source>Not allowed to upload this file because it is read-only on the server, restoring</source>
-        <translation>Impossible de télécharger ce fichier parce qu&apos;il est en lecture seule sur le serveur.</translation>
+        <translation>Pas autorisé à téléverser ce fichier car il est en lecture seule sur le serveur, restauration</translation>
     </message>
     <message>
         <location filename="../src/libsync/discovery.cpp" line="1213"/>
@@ -2491,7 +2491,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/gui/socketapi/socketapi.cpp" line="910"/>
         <source>Rename and upload...</source>
-        <translation>Renommer et télécharger…</translation>
+        <translation>Renommer et téléverser…</translation>
     </message>
     <message>
         <location filename="../src/gui/socketapi/socketapi.cpp" line="915"/>
@@ -2502,7 +2502,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/gui/socketapi/socketapi.cpp" line="922"/>
         <source>Move, rename and upload...</source>
-        <translation>Déplacer, renommer et télécharger…</translation>
+        <translation>Déplacer, renommer et téléverser…</translation>
     </message>
     <message>
         <location filename="../src/gui/socketapi/socketapi.cpp" line="925"/>
@@ -2512,7 +2512,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/gui/socketapi/socketapi.cpp" line="930"/>
         <source>Move and upload...</source>
-        <translation>Déplacer et télécharger...</translation>
+        <translation>Déplacer et téléverser...</translation>
     </message>
     <message>
         <location filename="../src/gui/socketapi/socketapi.cpp" line="931"/>
@@ -2546,7 +2546,7 @@ Notez que l&apos;utilisation de n&apos;importe quelle option de ligne de command
     <message>
         <location filename="../src/libsync/syncengine.cpp" line="777"/>
         <source>Space quota exceeded. Please contact the Administrator of this space.</source>
-        <translation>Le quota d&apos;Espace est dépassé. Veuillez contacter l&apos;administrateur de cet Espace.</translation>
+        <translation>Le quota de l&apos;Espace est dépassé. Veuillez contacter l&apos;Administrateur de cet Espace.</translation>
     </message>
     <message>
         <location filename="../src/libsync/syncengine.cpp" line="266"/>
