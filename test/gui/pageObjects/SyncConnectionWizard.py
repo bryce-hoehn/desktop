@@ -1,3 +1,4 @@
+from selenium.webdriver.common import keys
 from types import SimpleNamespace
 from appium.webdriver.common.appiumby import AppiumBy as By
 from selenium.webdriver.common.keys import Keys
@@ -5,6 +6,7 @@ import time
 
 from helpers.SetupClientHelper import get_current_user_sync_path
 from helpers.SetupClientHelper import app
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class SyncConnectionWizard:
@@ -71,15 +73,21 @@ class SyncConnectionWizard:
 
     @staticmethod
     def deselect_all_remote_folders():
+        another = app().find_element(
+            By.NAME,
+            "Add Space"
+        )
+        another.send_keys(Keys.ARROW_DOWN)
+        another.send_keys(" ")
         # NOTE: checkbox does not have separate object
         # click on (11,11) which is a checkbox
-        squish.mouseClick(
-            squish.waitForObject(SyncConnectionWizard.SELECTIVE_SYNC_ROOT_FOLDER),
-            11,
-            11,
-            squish.Qt.NoModifier,
-            squish.Qt.LeftButton,
-        )
+        # squish.mouseClick(
+        #     squish.waitForObject(SyncConnectionWizard.SELECTIVE_SYNC_ROOT_FOLDER),
+        #     11,
+        #     11,
+        #     squish.Qt.NoModifier,
+        #     squish.Qt.LeftButton,
+        # )
 
     @staticmethod
     def sort_by(header_text):
@@ -201,44 +209,36 @@ class SyncConnectionWizard:
 
     @staticmethod
     def select_or_unselect_folders_to_sync(
-        folders, should_select=True, new_sync_connection_wizard=False
+            folders,
+            should_select=True,
+            new_sync_connection_wizard=False,
     ):
         if should_select:
-            # First deselect all
             SyncConnectionWizard.deselect_all_remote_folders()
-        folder_tree_locator = SyncConnectionWizard.get_folder_tree_locator(
-            new_sync_connection_wizard
-        )
+
         for folder in folders:
-            folder_levels = folder.strip("/").split("/")
-            parent_selector = None
-            for sub_folder in folder_levels:
-                if not parent_selector:
-                    folder_tree_locator["text"] = sub_folder
-                    parent_selector = folder_tree_locator
-                    selector = parent_selector
-                else:
-                    selector = {
-                        "column": "0",
-                        "container": parent_selector,
-                        "text": sub_folder,
-                        "type": "QModelIndex",
-                    }
-                if (
-                    len(folder_levels) == 1
-                    or folder_levels.index(sub_folder) == len(folder_levels) - 1
-                ):
-                    # NOTE: checkbox does not have separate object
-                    # click on (11,11) which is a checkbox
-                    squish.mouseClick(
-                        squish.waitForObject(selector),
-                        11,
-                        11,
-                        squish.Qt.NoModifier,
-                        squish.Qt.LeftButton,
-                    )
-                else:
-                    squish.doubleClick(squish.waitForObject(selector))
+            # breakpoint()
+            folder_name = folder.strip("/").split("/")[-1]
+            # print(folder_name)
+            # import time
+            # time.sleep(5)
+            # breakpoint()
+
+            folder_element = app().find_element(
+                By.XPATH,
+                f"//tree//*[@name='{folder_name}']"
+            )
+            print(folder_element)
+
+            folder_element.click()
+            # tree = app().find_element(By.XPATH, "//tree")
+            # folder_element.send_keys(Keys.ARROW_DOWN)
+            # tree.send_keys(Keys.ARROW_DOWN)
+            # tree.send_keys(Keys.TAB)
+            folder_element.send_keys(Keys.ENTER)
+            time.sleep(10)
+
+
 
     @staticmethod
     def confirm_choose_what_to_sync_selection():
