@@ -217,26 +217,46 @@ class SyncConnectionWizard:
             SyncConnectionWizard.deselect_all_remote_folders()
 
         for folder in folders:
-            # breakpoint()
             folder_name = folder.strip("/").split("/")[-1]
-            # print(folder_name)
-            # import time
-            # time.sleep(5)
-            # breakpoint()
+            print(f"Processing folder: {folder_name}")
 
-            folder_element = app().find_element(
-                By.XPATH,
-                f"//tree//*[@name='{folder_name}']"
-            )
-            print(folder_element)
+            # Find the folder element
+            folder_element = app().find_element(By.NAME, folder_name)
+            print(f"Found element: {folder_element}")
 
-            folder_element.click()
-            # tree = app().find_element(By.XPATH, "//tree")
-            # folder_element.send_keys(Keys.ARROW_DOWN)
-            # tree.send_keys(Keys.ARROW_DOWN)
-            # tree.send_keys(Keys.TAB)
-            folder_element.send_keys(Keys.ENTER)
-            time.sleep(10)
+            # Check current checked state
+            checked = folder_element.get_attribute("checked")
+            print(f"Checked before: {checked}")
+
+            success = False
+
+            # Method: Try xdotool if available
+            try:
+                import subprocess
+                # Check if xdotool is available
+                result = subprocess.run(['which', 'xdotool'], capture_output=True)
+                if result.returncode == 0:
+                    rect = folder_element.rect
+                    # Click at checkbox position (left side of row)
+                    checkbox_x = int(rect['x'] + 10)
+                    checkbox_y = int(rect['y'] + rect['height'] // 2)
+
+                    # Move mouse to position and click
+                    subprocess.run(['xdotool', 'mousemove', str(checkbox_x), str(checkbox_y)], check=True)
+                    subprocess.run(['xdotool', 'click', '1'], check=True)
+
+                    checked_after = folder_element.get_attribute("checked")
+                    print(f"Checked after xdotool click: {checked_after}")
+                    if checked_after == "true":
+                        success = True
+                        continue
+                else:
+                    print("xdotool not found")
+            except Exception as e:
+                print(f"Method failed (xdotool): {e}")
+
+            if not success:
+                raise AssertionError(f"Failed to select folder: {folder_name}")
 
 
 
@@ -280,3 +300,41 @@ class SyncConnectionWizard:
             if new_sync_connection_wizard
             else SyncConnectionWizard.CHOOSE_WHAT_TO_SYNC_FOLDER_TREE.copy()
         )
+
+    @staticmethod
+    def debug_tree_structure():
+        """
+        Debug helper to inspect tree structure and checkbox states.
+        Call this to see all elements and their attributes in the tree.
+        """
+        print("\n=== Debug: Tree Structure ===")
+        try:
+            tree = app().find_element(By.XPATH, "//tree")
+            print(f"Tree found: {tree}")
+
+            # Get all child elements
+            all_elements = tree.find_elements(By.XPATH, ".//*")
+            print(f"Total elements found: {len(all_elements)}")
+
+            for elem in all_elements:
+                name = elem.get_attribute("name")
+                role = elem.get_attribute("role")
+                checked = elem.get_attribute("checked")
+                checkable = elem.get_attribute("checkable")
+                selected = elem.get_attribute("selected")
+
+                if name or role:
+                    print(f"  Element: name='{name}', role='{role}', "
+                          f"checked={checked}, checkable={checkable}, selected={selected}")
+
+            # Also try table cells specifically
+            print("\n=== Table Cells ===")
+            cells = tree.find_elements(By.XPATH, ".//table cell")
+            print(f"Total table cells: {len(cells)}")
+            for i, cell in enumerate(cells):
+                cell_name = cell.get_attribute("name")
+                print(f"  Cell {i}: '{cell_name}'")
+
+        except Exception as e:
+            print(f"Debug error: {e}")
+        print("=== End Debug ===\n")
