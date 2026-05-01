@@ -1,4 +1,4 @@
-name: CI
+name: Flatpak Builder
 
 on:
   release:
@@ -6,6 +6,7 @@ on:
   workflow_dispatch: 
 
 jobs:
+  # from https://github.com/flatpak/flatpak-github-actions
   flatpak:
     name: "Flatpak"
     container:
@@ -21,8 +22,6 @@ jobs:
     runs-on: ${{ matrix.variant.runner }}
     steps:
       - uses: actions/checkout@v6
-        with:
-          submodules: "true"
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: eu.opencloud.Desktop.flatpak
@@ -30,3 +29,9 @@ jobs:
           cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.variant.arch }}
           verbose: true
+      - uses: flatpak/flatpak-github-actions/flat-manager@v6
+        name: "Deploy"
+        with:
+          repository: opencloud # The repository to push the build into
+          flat-manager-url: https://flatpak-api.elementary.io # The flat-manager remote URL
+          token: some_very_hidden_token # A flat-manager token
