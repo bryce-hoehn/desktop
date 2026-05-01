@@ -1,12 +1,13 @@
 name: Flatpak Builder
 
 on:
-  release:
-    types: [published]
   workflow_dispatch: 
 
 jobs:
   # from https://github.com/flatpak/flatpak-github-actions
+  # this builds the flatpak for testing purposes
+  # flathub builds from source once submitted: https://docs.flathub.org/docs/for-app-authors/requirements
+  # alternatively, flatpak/flatpak-github-actions/flat-manager@v6 can be used for deploying to custom flatpak repo
   flatpak:
     name: "Flatpak"
     container:
@@ -35,9 +36,3 @@ jobs:
           cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.variant.arch }}
           verbose: true
-      - uses: flatpak/flatpak-github-actions/flat-manager@v6
-        name: "Deploy"
-        with:
-          repository: opencloud # The repository to push the build into
-          flat-manager-url: https://flatpak-api.elementary.io # The flat-manager remote URL
-          token: some_very_hidden_token # A flat-manager token
