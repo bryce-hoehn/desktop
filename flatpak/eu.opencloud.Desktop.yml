@@ -114,7 +114,7 @@ modules:
     cleanup:
       - /include
     post-install:
-      - install -Dm644 -t /app/share/metainfo flatpak/eu.opencloud.Desktop.metainfo.xml
+      - install -Dm644 -t /app/share/metainfo eu.opencloud.Desktop.metainfo.xml
     sources:
       - type: git
         url: https://github.com/opencloud-eu/desktop
@@ -127,4 +127,4 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           timestamp-query: .published_at
       - type: file
-        path: flatpak/eu.opencloud.Desktop.metainfo.xml
+        path: eu.opencloud.Desktop.metainfo.xml
