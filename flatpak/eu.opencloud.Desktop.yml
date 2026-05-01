@@ -114,12 +114,12 @@ modules:
     cleanup:
       - /include
     post-install:
-      - install -Dm644 -t /app/share/metainfo eu.opencloud.Desktop.metainfo.xml
+      - install -Dm644 -t /app/share/metainfo flatpak/eu.opencloud.Desktop.metainfo.xml
     sources:
       - type: git
         url: https://github.com/opencloud-eu/desktop
-        tag: v3.0.0-rc.1
-        commit: 65249647dd131585fd4e13f760a24190255a008a
+        tag: v3.0.3
+        commit: 72fe8fb78e3e8b7dc9d2e54dfb497660e729cec3
         x-checker-data:
           type: json
           url: https://api.github.com/repos/opencloud/desktop/releases/latest
@@ -127,4 +127,4 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           timestamp-query: .published_at
       - type: file
-        path: eu.opencloud.Desktop.metainfo.xml
+        path: flatpak/eu.opencloud.Desktop.metainfo.xml
