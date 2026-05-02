@@ -117,12 +117,12 @@ modules:
       - install -Dm644 -t /app/share/metainfo eu.opencloud.OpenCloudDesktop.metainfo.xml
     sources:
       - type: git
-        url: https://github.com/bryce-hoehn/desktop
-        tag: v3.0.6
-        commit: ce73613d2ab0d8bb8f717878bde81974238ecc9f
+        url: https://github.com/opencloud-eu/desktop
+        tag: v3.0.3
+        commit: 72fe8fb78e3e8b7dc9d2e54dfb497660e729cec3
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/bryce-hoehn/desktop/releases/latest
+          url: https://api.github.com/repos/opencloud-eu/desktop/releases/latest
           tag-query: .tag_name
           version-query: $tag | sub("^[vV]"; "")
           timestamp-query: .published_at
