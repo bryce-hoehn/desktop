@@ -4,9 +4,9 @@ name: Update Flathub
 # or metainfo file are updated on the default branch.
 #
 # Prerequisites (see https://docs.flathub.org/docs/for-app-authors/updates):
-#   1. App must be published on Flathub (repo: flathub/eu.opencloud.Desktop)
+#   1. App must be published on Flathub (repo: flathub/eu.opencloud.OpenCloudDesktop)
 #   2. Add a FLATHUB_TOKEN repository secret – a GitHub PAT with repo scope
-#      that has write access to the flathub/eu.opencloud.Desktop repo
+#      that has write access to the flathub/eu.opencloud.OpenCloudDesktop repo
 #   3. Disable the global x-checker action on the Flathub repo (if enabled)
 #      to avoid duplicate update PRs
 #
@@ -17,8 +17,8 @@ on:
   push:
     branches: [main]
     paths:
-      - eu.opencloud.Desktop.metainfo.xml
-      - eu.opencloud.Desktop.yml
+      - eu.opencloud.OpenCloudDesktop.metainfo.xml
+      - eu.opencloud.OpenCloudDesktop.yml
 
 jobs:
   update-flathub:
@@ -30,20 +30,20 @@ jobs:
       - name: Get version from metainfo
         id: version
         run: |
-          VERSION=$(grep -oP '<release version="\K[^"]+' eu.opencloud.Desktop.metainfo.xml)
+          VERSION=$(grep -oP '<release version="\K[^"]+' eu.opencloud.OpenCloudDesktop.metainfo.xml)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Checkout Flathub repo
         uses: actions/checkout@v6
         with:
-          repository: flathub/eu.opencloud.Desktop
+          repository: flathub/eu.opencloud.OpenCloudDesktop
           token: ${{ secrets.FLATHUB_TOKEN }}
           path: flathub
 
       - name: Copy updated files
         run: |
-          cp eu.opencloud.Desktop.metainfo.xml flathub/
-          cp eu.opencloud.Desktop.yml flathub/
+          cp eu.opencloud.OpenCloudDesktop.metainfo.xml flathub/
+          cp eu.opencloud.OpenCloudDesktop.yml flathub/
 
       - name: Create Pull Request to Flathub
         uses: peter-evans/create-pull-request@v7

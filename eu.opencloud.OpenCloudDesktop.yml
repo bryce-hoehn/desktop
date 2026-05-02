@@ -1,4 +1,4 @@
-app-id: eu.opencloud.Desktop
+app-id: eu.opencloud.OpenCloudDesktop
 
 runtime: org.kde.Platform
 runtime-version: "6.9"
@@ -20,7 +20,7 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
   - --talk-name=org.freedesktop.secrets
   - --talk-name=org.kde.StatusNotifierWatcher
-  - --own-name=eu.opencloud.Desktop
+  - --own-name=eu.opencloud.OpenCloudDesktop
   - --talk-name=org.kde.kwalletd5
   - --talk-name=org.kde.kwalletd6
   - --env=TMPDIR=/var/tmp
@@ -99,15 +99,6 @@ modules:
         tag: v1.2.0
         commit: 3186a158f8e6565e89f5983b4028c892737844ff
 
-  - name: desktop-file
-    buildsystem: simple
-    build-commands:
-      - sed -e 's|@APPLICATION_EXECUTABLE@|opencloud|g' -e 's|@APPLICATION_NAME@|OpenCloud|g' -e 's|@APPLICATION_ICON_NAME@|eu.opencloud.Desktop|g' opencloud.desktop.in > eu.opencloud.Desktop.desktop
-      - install -Dm644 eu.opencloud.Desktop.desktop /app/share/applications/eu.opencloud.Desktop.desktop
-    sources:
-      - type: file
-        path: opencloud.desktop.in
-        
   - name: opencloud-desktop
     buildsystem: cmake-ninja
     config-opts:
@@ -123,7 +114,7 @@ modules:
     cleanup:
       - /include
     post-install:
-      - install -Dm644 -t /app/share/metainfo eu.opencloud.Desktop.metainfo.xml
+      - install -Dm644 -t /app/share/metainfo eu.opencloud.OpenCloudDesktop.metainfo.xml
     sources:
       - type: git
         url: https://github.com/opencloud-eu/desktop
@@ -136,4 +127,4 @@ modules:
           version-query: $tag | sub("^[vV]"; "")
           timestamp-query: .published_at
       - type: file
-        path: eu.opencloud.Desktop.metainfo.xml
+        path: eu.opencloud.OpenCloudDesktop.metainfo.xml

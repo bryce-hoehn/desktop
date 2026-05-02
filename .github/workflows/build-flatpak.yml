@@ -31,8 +31,8 @@ jobs:
           git checkout
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          bundle: eu.opencloud.Desktop.flatpak
-          manifest-path: eu.opencloud.Desktop.yml
+          bundle: eu.opencloud.OpenCloudDesktop.flatpak
+          manifest-path: eu.opencloud.OpenCloudDesktop.yml
           cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.variant.arch }}
           verbose: true

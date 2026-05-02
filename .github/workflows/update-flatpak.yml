@@ -46,21 +46,21 @@ jobs:
         run: |
           sed -i \
             -e 's|<release version="[^"]*" date="[^"]*">|<release version="${{ steps.release.outputs.version }}" date="${{ steps.release.outputs.date }}">|' \
-            eu.opencloud.Desktop.metainfo.xml
+            eu.opencloud.OpenCloudDesktop.metainfo.xml
 
-          echo "Updated eu.opencloud.Desktop.metainfo.xml:"
-          grep '<release version=' eu.opencloud.Desktop.metainfo.xml
+          echo "Updated eu.opencloud.OpenCloudDesktop.metainfo.xml:"
+          grep '<release version=' eu.opencloud.OpenCloudDesktop.metainfo.xml
 
       - name: Update Desktop.yml
         run: |
           # Update the tag and commit for the opencloud-desktop module source
           sed -i \
             -e '/name: opencloud-desktop/,/^  - name:/{ s|tag: v.*|tag: ${{ steps.release.outputs.tag }}|; s|commit: [a-f0-9]\{40\}|commit: ${{ steps.release.outputs.commit }}|; }' \
-            eu.opencloud.Desktop.yml
+            eu.opencloud.OpenCloudDesktop.yml
 
-          echo "Updated eu.opencloud.Desktop.yml:"
-          grep -A2 'name: opencloud-desktop' eu.opencloud.Desktop.yml | head -1
-          grep -E '^\s+tag:|^\s+commit:' eu.opencloud.Desktop.yml | tail -2
+          echo "Updated eu.opencloud.OpenCloudDesktop.yml:"
+          grep -A2 'name: opencloud-desktop' eu.opencloud.OpenCloudDesktop.yml | head(1)
+          grep -E '^\s+tag:|^\s+commit:' eu.opencloud.OpenCloudDesktop.yml | tail -2
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
@@ -70,8 +70,8 @@ jobs:
             Automated update to [${{ steps.release.outputs.tag }}](https://github.com/opencloud-eu/desktop/releases/tag/${{ steps.release.outputs.tag }}).
 
             Changes:
-            - Updated `eu.opencloud.Desktop.metainfo.xml` release version to `${{ steps.release.outputs.version }}` (date: `${{ steps.release.outputs.date }}`)
-            - Updated `eu.opencloud.Desktop.yml` source tag to `${{ steps.release.outputs.tag }}` and commit to `${{ steps.release.outputs.commit }}`
+            - Updated `eu.opencloud.OpenCloudDesktop.metainfo.xml` release version to `${{ steps.release.outputs.version }}` (date: `${{ steps.release.outputs.date }}`)
+            - Updated `eu.opencloud.OpenCloudDesktop.yml` source tag to `${{ steps.release.outputs.tag }}` and commit to `${{ steps.release.outputs.commit }}`
           branch: update-flatpak-${{ steps.release.outputs.version }}
           commit-message: "chore: update flatpak to ${{ steps.release.outputs.version }}"
           delete-branch: true
