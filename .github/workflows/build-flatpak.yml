@@ -3,6 +3,9 @@ name: Flatpak Builder
 on:
   workflow_dispatch: 
 
+env:
+  FLATPAK_ID: eu.opencloud.OpenCloudDesktop
+
 jobs:
   # from https://github.com/flatpak/flatpak-github-actions
   # this builds the flatpak for testing purposes
@@ -31,13 +34,8 @@ jobs:
           git checkout
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          bundle: eu.opencloud.OpenCloudDesktop.flatpak
-          manifest-path: eu.opencloud.OpenCloudDesktop.yml
+          bundle: ${{ env.FLATPAK_ID }}.flatpak
+          manifest-path: ${{ env.FLATPAK_ID }}.yml
           cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.variant.arch }}
           verbose: true
-
-
-
-
-
