@@ -109,8 +109,7 @@ modules:
       - install -Dm644 eu.opencloud.Desktop.desktop /app/share/applications/eu.opencloud.Desktop.desktop
     sources:
       - type: file
-        url: https://raw.githubusercontent.com/opencloud-eu/desktop/refs/heads/main/opencloud.desktop.in
-        dest-filename: opencloud.desktop.in
+        path: opencloud.desktop.in
         
   - name: opencloud-desktop
     buildsystem: cmake-ninja
