@@ -1,0 +1,77 @@
+name: Update Flatpak
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    name: "Update Flatpak files"
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Get latest release info
+        id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get the latest release from GitHub API
+          RELEASE=$(gh api repos/opencloud-eu/desktop/releases/latest)
+
+          TAG=$(echo "$RELEASE" | jq -r '.tag_name')
+          DATE=$(echo "$RELEASE" | jq -r '.published_at' | cut -dT -f1)
+          VERSION="${TAG#v}"
+
+          # Get the commit SHA for the tag
+          COMMIT=$(gh api "repos/opencloud-eu/desktop/commits/$TAG" --jq '.sha')
+
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+          echo "commit=$COMMIT" >> "$GITHUB_OUTPUT"
+
+          echo "## Release info" >> "$GITHUB_STEP_SUMMARY"
+          echo "Tag: \`$TAG\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "Version: \`$VERSION\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "Date: \`$DATE\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "Commit: \`$COMMIT\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Update metainfo.xml
+        run: |
+          sed -i \
+            -e 's|<release version="[^"]*" date="[^"]*">|<release version="${{ steps.release.outputs.version }}" date="${{ steps.release.outputs.date }}">|' \
+            eu.opencloud.Desktop.metainfo.xml
+
+          echo "Updated eu.opencloud.Desktop.metainfo.xml:"
+          grep '<release version=' eu.opencloud.Desktop.metainfo.xml
+
+      - name: Update Desktop.yml
+        run: |
+          # Update the tag and commit for the opencloud-desktop module source
+          sed -i \
+            -e '/name: opencloud-desktop/,/^  - name:/{ s|tag: v.*|tag: ${{ steps.release.outputs.tag }}|; s|commit: [a-f0-9]\{40\}|commit: ${{ steps.release.outputs.commit }}|; }' \
+            eu.opencloud.Desktop.yml
+
+          echo "Updated eu.opencloud.Desktop.yml:"
+          grep -A2 'name: opencloud-desktop' eu.opencloud.Desktop.yml | head -1
+          grep -E '^\s+tag:|^\s+commit:' eu.opencloud.Desktop.yml | tail -2
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "Update flatpak to ${{ steps.release.outputs.version }}"
+          body: |
+            Automated update to [${{ steps.release.outputs.tag }}](https://github.com/opencloud-eu/desktop/releases/tag/${{ steps.release.outputs.tag }}).
+
+            Changes:
+            - Updated `eu.opencloud.Desktop.metainfo.xml` release version to `${{ steps.release.outputs.version }}` (date: `${{ steps.release.outputs.date }}`)
+            - Updated `eu.opencloud.Desktop.yml` source tag to `${{ steps.release.outputs.tag }}` and commit to `${{ steps.release.outputs.commit }}`
+          branch: update-flatpak-${{ steps.release.outputs.version }}
+          commit-message: "chore: update flatpak to ${{ steps.release.outputs.version }}"
+          delete-branch: true
