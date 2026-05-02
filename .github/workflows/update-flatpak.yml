@@ -25,14 +25,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Get the latest release from GitHub API
-          RELEASE=$(gh api repos/opencloud-eu/desktop/releases/latest)
+          RELEASE=$(gh api repos/bryce-hoehn/desktop/releases/latest)
 
           TAG=$(echo "$RELEASE" | jq -r '.tag_name')
           DATE=$(echo "$RELEASE" | jq -r '.published_at' | cut -dT -f1)
           VERSION="${TAG#v}"
 
           # Get the commit SHA for the tag
-          COMMIT=$(gh api "repos/opencloud-eu/desktop/commits/$TAG" --jq '.sha')
+          COMMIT=$(gh api "repos/bryce-hoehn/desktop/commits/$TAG" --jq '.sha')
 
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
