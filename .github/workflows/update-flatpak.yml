@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 env:
   FLATPAK_ID: eu.opencloud.OpenCloudDesktop
@@ -66,19 +65,13 @@ jobs:
           grep -A2 'name: opencloud-desktop' ${{ env.FLATPAK_ID }}.yml | head -1
           grep -E '^\s+tag:|^\s+commit:' ${{ env.FLATPAK_ID }}.yml | tail -2
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          title: "Update flatpak to ${{ steps.release.outputs.version }}"
-          body: |
-            Automated update to [${{ steps.release.outputs.tag }}](https://github.com/opencloud-eu/desktop/releases/tag/${{ steps.release.outputs.tag }}).
-
-            Changes:
-            - Updated `${{ env.FLATPAK_ID }}.metainfo.xml` release version to `${{ steps.release.outputs.version }}` (date: `${{ steps.release.outputs.date }}`)
-            - Updated `${{ env.FLATPAK_ID }}.yml` source tag to `${{ steps.release.outputs.tag }}` and commit to `${{ steps.release.outputs.commit }}`
-          branch: update-flatpak-${{ steps.release.outputs.version }}
-          commit-message: "chore: update flatpak to ${{ steps.release.outputs.version }}"
-          delete-branch: true
+      - name: Commit and push to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ${{ env.FLATPAK_ID }}.metainfo.xml ${{ env.FLATPAK_ID }}.yml
+          git commit -m "chore: update flatpak to ${{ steps.release.outputs.version }}"
+          git push origin HEAD:main
 
   publish:
     name: "Update Flathub"
