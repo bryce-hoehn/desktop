@@ -99,6 +99,19 @@ modules:
         tag: v1.2.0
         commit: 3186a158f8e6565e89f5983b4028c892737844ff
 
+  - name: desktop-file
+    buildsystem: simple
+    build-commands:
+      - sed -e 's|@APPLICATION_EXECUTABLE@|opencloud|g' \
+            -e 's|@APPLICATION_NAME@|OpenCloud|g' \
+            -e 's|@APPLICATION_ICON_NAME@|eu.opencloud.Desktop|g' \
+            opencloud.desktop.in > eu.opencloud.Desktop.desktop
+      - install -Dm644 eu.opencloud.Desktop.desktop /app/share/applications/eu.opencloud.Desktop.desktop
+    sources:
+      - type: file
+        url: https://raw.githubusercontent.com/opencloud-eu/desktop/refs/heads/main/opencloud.desktop.in
+        dest-filename: opencloud.desktop.in
+        
   - name: opencloud-desktop
     buildsystem: cmake-ninja
     config-opts:
