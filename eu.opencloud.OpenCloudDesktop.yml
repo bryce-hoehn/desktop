@@ -118,8 +118,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/bryce-hoehn/desktop
-        tag: v3.0.5
-        commit: 506c07cc4d0896bcda41479f06df0da35a50180e
+        tag: v3.0.6
+        commit: ce73613d2ab0d8bb8f717878bde81974238ecc9f
         x-checker-data:
           type: json
           url: https://api.github.com/repos/bryce-hoehn/desktop/releases/latest
