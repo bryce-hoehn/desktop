@@ -17,7 +17,7 @@ Any file you add, modify or delete in the synced folders on your desktop or lapt
     <category>Network</category>
     <category>Utility</category>
   </categories>
-  <launchable type="desktop-id">eu.opencloud.OpenCloudDesktop</launchable>
+  <launchable type="desktop-id">eu.opencloud.OpenCloudDesktop.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <caption>The options dialog</caption>
