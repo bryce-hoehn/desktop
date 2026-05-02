@@ -15,10 +15,8 @@ name: Update Flathub
 
 on:
   push:
-    branches: [main]
-    paths:
-      - eu.opencloud.OpenCloudDesktop.metainfo.xml
-      - eu.opencloud.OpenCloudDesktop.yml
+    tags:
+      - 'v*'
 
 jobs:
   update-flathub:
