@@ -102,9 +102,10 @@ modules:
   - name: desktop-file
     buildsystem: simple
     build-commands:
-      - sed -e 's|@APPLICATION_EXECUTABLE@|opencloud|g' \
-            -e 's|@APPLICATION_NAME@|OpenCloud|g' \
-            -e 's|@APPLICATION_ICON_NAME@|eu.opencloud.Desktop|g' \
+      - >
+        sed -e 's|@APPLICATION_EXECUTABLE@|opencloud|g'
+            -e 's|@APPLICATION_NAME@|OpenCloud|g'
+            -e 's|@APPLICATION_ICON_NAME@|eu.opencloud.Desktop|g'
             opencloud.desktop.in > eu.opencloud.Desktop.desktop
       - install -Dm644 eu.opencloud.Desktop.desktop /app/share/applications/eu.opencloud.Desktop.desktop
     sources:
